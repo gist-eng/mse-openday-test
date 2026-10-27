@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#d1231b">
-<!-- Research Taste v3.8 (2026-10-27 반도체·디스플레이·센서) · GIST red skin (chatgpt_skin/style.css) -->
+<!-- Research Taste v3.9 (2026-10-27 세부 주제별 수업 안내) · GIST red skin (chatgpt_skin/style.css) -->
 <title>나의 연구 취향 — GIST 신소재 오픈데이</title>
 <meta name="description" content="무엇을 만들고, 어떻게 탐구하고 싶나요? 선택한 관심사를 따라 7번의 질문으로 만나는 연구와 교수님. GIST 1~4학년 모두 함께해요.">
 <meta property="og:title" content="나는 어떤 연구에 끌릴까? | GIST 신소재 오픈데이">
@@ -698,7 +698,7 @@ const FACULTY=[
  {id:'ha',name:'하민정',lab:'지능형 소재 및 소자 연구실',summary:"자극반응형·소프트소재·전자피부/센서·변형 가능한 전자소자·자성 배열·구동/에너지 수확",areas:['semi','bio','materials','energy','discovery'],topics:["responsive", "flex", "bioelectronic", "electronic", "structure", "magnetic", "harvest"],url:'https://minjeongha.wixsite.com/imd-minjeong-ha',source:'https://minjeongha.wixsite.com/imd-minjeong-ha/research'}
 ];
 
-const TAG_NAMES={materialdesign:'반도체·광반도체 소재 설계',perovskite:'페로브스카이트',flex:'유연·신축 소자',display:'디스플레이',detect:'광검출·센서',integration:'집적·공정',lithography:'나노 리소그래피',electronic:'전자소자',protein:'단백질 공학',drug:'약물전달',catalysis:'촉매',carbon:'탄소·환경',ai:'인공지능(AI) 소재·분자 설계',neuromorphic:'뉴로모픽·인공지능 소자',molecule:'분자 설계',organic:'유기소재',polymer:'고분자',solar:'태양전지',assembly:'자기조립',insitu:'실시간 관찰',microscopy:'전자현미경',growth:'소재 성장·합성',dielectric:'유전소재',structure:'구조·물성',twod:'저차원 소재',memory:'메모리·뉴로모픽',gas:'가스센서',emit:'발광소자',porous:'다공성 소재',membrane:'분리막',battery:'배터리',electrochem:'전기화학',contact:'금속접촉·배선',bioelectronic:'생체전자',tissue:'조직공학',hydrogel:'하이드로젤',calculation:'전산재료과학',oxide:'산화물',ferro:'강유전체',responsive:'자극반응 소재',hydrogen:'수소에너지',fuelcell:'연료전지',stability:'안정성·열화',corrosion:'부식',thermoelectric:'열전 소재',piezo:'압전 소재',magnetic:'자성 소재',harvest:'에너지 수확',xray:'방사광·X선 분석'};
+const TAG_NAMES={materialdesign:'조성·구조·계면 설계',perovskite:'페로브스카이트',flex:'유연·신축 소자',display:'디스플레이',detect:'광검출·센서',integration:'집적·공정',lithography:'나노 리소그래피',electronic:'전자소자',protein:'단백질 공학',drug:'약물전달',catalysis:'촉매',carbon:'탄소·환경',ai:'인공지능(AI) 소재·분자 설계',neuromorphic:'뉴로모픽·인공지능 소자',molecule:'분자 설계',organic:'유기소재',polymer:'고분자',solar:'태양전지',assembly:'자기조립',insitu:'실시간 관찰',microscopy:'전자현미경',growth:'소재 성장·합성',dielectric:'유전소재',structure:'구조·물성',twod:'저차원 소재',memory:'메모리·뉴로모픽',gas:'가스센서',emit:'발광소자',porous:'다공성 소재',membrane:'분리막',battery:'배터리',electrochem:'전기화학',contact:'금속접촉·배선',bioelectronic:'생체전자',tissue:'조직공학',hydrogel:'하이드로젤',calculation:'전산재료과학',oxide:'산화물',ferro:'강유전체',responsive:'자극반응 소재',hydrogen:'수소에너지',fuelcell:'연료전지',stability:'안정성·열화',corrosion:'부식',thermoelectric:'열전 소재',piezo:'압전 소재',magnetic:'자성 소재',harvest:'에너지 수확',xray:'방사광·X선 분석'};
 
 
 const AREA_IDS=["semi", "energy", "optical", "bio", "materials", "discovery"];
@@ -1152,9 +1152,15 @@ const CURRICULUM_PATHS={
  materials:{title:'소재를 설계하고 만드는 일이 궁금하다면, 수업에서는',intro:'분자의 연결과 상호작용이 소재의 성질로 이어지는 과정을 배워요.',codes:['MA2104','MA3210','MA4226','MA3211'],activity:'유기재료실험과 학사논문연구로 소재를 만들고 분석하는 경험을 쌓을 수 있어요.'},
  discovery:{title:'소재의 성질과 원리가 궁금하다면, 수업에서는',intro:'소재의 구조를 이해하고, 계산·데이터·측정으로 탐구하는 방법을 배워요.',codes:['MA3203','MA4212','MA4228','MA3211'],activity:'계산과 실험은 여러 연구 분야에서 함께 쓰여요. 학사논문연구에서 관심 문제에 맞는 방법을 탐색할 수 있어요.'}
 };
-function curriculumFor(area){return CURRICULUM_PATHS[area]||CURRICULUM_PATHS.semi;}
+const TOPIC_CURRICULUM={
+ 'materials/composition':{title:'무기·나노소재를 설계하고 싶다면, 수업에서는',intro:'원자 배열과 결정, 계면의 원리에서 출발해 소재를 만들고 분석하는 방법을 배워요.',codes:['MA2101','MA2102','MA3203','MA3211'],activity:'전자재료실험과 학사논문연구에서 결정·계면을 설계한 소재를 직접 만들고 분석해볼 수 있어요.'},
+ 'materials/electrolyte':{title:'에너지 소재를 분자부터 설계하고 싶다면, 수업에서는',intro:'분자의 구조와 전기화학 반응이 에너지 저장 성능으로 이어지는 과정을 배워요.',codes:['MA2102','MA2201','MA2103','MA4217'],activity:'실험과 학사논문연구에서 전극·전해질 소재를 만들고 성능을 평가하는 경험을 쌓을 수 있어요.'}
+};
+let curriculumTopic=null;
+function curriculumFor(area){const t=curriculumTopic&&curriculumTopic.startsWith(area+'/')?TOPIC_CURRICULUM[curriculumTopic]:null;return t||CURRICULUM_PATHS[area]||CURRICULUM_PATHS.semi;}
+function setCurriculumTopic(key){curriculumTopic=key;}
 
-return {CURRICULUM_SOURCE,COURSES,FOUNDATION_CODES,CURRICULUM_PATHS,curriculumFor};
+return {CURRICULUM_SOURCE,COURSES,FOUNDATION_CODES,CURRICULUM_PATHS,curriculumFor,setCurriculumTopic};
 })();
 __modules["app.mjs"]=(()=>{
 const {EVENT,METHODS,nextSteps}=__modules["content.mjs"];
@@ -1254,10 +1260,10 @@ function renderResult(r,isShared=false){
  <div class="result-columns"><section class="result-section"><span class="section-number">01 — 내가 고른 경로</span><h2>호기심이 이렇게 이어졌어요</h2><p class="section-sub">처음 마음이 갔던 장면에서, 구체적인 연구 주제까지.</p><ol class="journey-path"><li><span>출발점</span><b>${f.name}</b></li><li><span>더 궁금한 주제</span><b>${esc(r.topic.name)}</b></li><li><span>첫 접근</span><b>${m[0].name}</b></li><li><span>난관에서의 다음 한 수</span><b>${m[m.length-1].name}</b></li></ol><p class="spectrum-note">지금 고른 호기심을 정리한 결과예요. 능력이나 진학 가능성을 평가하지 않아요. 연구실 안내 순서는 지금 고른 관심과의 연결 정도를 바탕으로 정합니다.</p></section><section class="result-section" style="--accent:${f.color}"><span class="section-number">02 — 대화의 시작</span><h2>포스터 앞에서, 이 질문</h2><p class="section-sub">어떤 말을 할지 막막하면 이대로 시작해요.</p><ul class="question-list">${resultQuestions(r).map(q=>`<li>${esc(q)}</li>`).join('')}</ul><button class="ask-copy" data-action="copy-questions">질문 복사하기 →</button></section></div>
  <section class="faculty-section" aria-labelledby="faculty-heading"><span class="section-number">03 — 연구실 디렉토리</span><h2 id="faculty-heading">이 호기심, 누구와 이야기할까요?</h2><p class="section-sub">내 관심과 연결되는 연구실부터 살펴봐요. 전체 교수님 명단도 함께 볼 수 있어요.</p><div class="faculty-tabs" role="group" aria-label="강조할 연구 관심 선택"><button data-faculty-area="mine" aria-pressed="true">내가 고른 주제</button>${FIELDS.map(a=>`<button data-faculty-area="${a.id}" aria-pressed="false">${a.short}</button>`).join('')}<button data-faculty-area="all" aria-pressed="false">전체 보기</button></div><div id="faculty-map" aria-live="polite"></div><p class="faculty-source">교수님 한 분의 연구는 여러 주제에 연결될 수 있어요. 공개 연구소개를 바탕으로 만든 탐색용 연결이며, 현재 연구·참여 기회는 교수님과 확인해주세요. <a href="${FACULTY_SOURCE}" target="_blank" rel="noopener">공식 교수진 ↗</a><br>연구소개 확인: ${FACULTY_CHECKED}</p></section>
  ${!isShared?'<section class="next-section" id="next-section"></section>':''}
- <section class="explore"><span class="section-number">05 — 다른 호기심</span><h2>다른 이야기로도 출발해보세요</h2><p class="section-sub">응용에서 시작하는 네 입구, 소재·원리에서 시작하는 두 입구예요. 서로 겹치며, 연구실을 나누는 공식 분류는 아니에요.</p><div class="explore-grid">${FIELDS.map(field=>`<button class="explore-button" data-field="${field.id}" style="--accent:${field.color}"><span class="field-index">${field.code}</span><span><b>${field.name}</b><small>${field.examples.slice(0,2).join(' · ')}</small></span><span class="explore-arrow">↗</span></button>`).join('')}</div><p class="research-common">소재 설계는 다섯 입구에 모두 이어져요. AI로 소재를 찾는 연구와 AI를 구현하는 반도체 연구도 구분해 살펴보세요. 다른 입구에서도 같은 교수님과 새로운 연구 이야기를 만날 수 있어요.</p></section>
+ <section class="explore"><span class="section-number">05 — 다른 호기심</span><h2>다른 이야기로도 출발해보세요</h2><p class="section-sub">응용에서 시작하는 세 입구, 소재·원리에서 시작하는 두 입구예요. 서로 겹치며, 연구실을 나누는 공식 분류는 아니에요.</p><div class="explore-grid">${FIELDS.map(field=>`<button class="explore-button" data-field="${field.id}" style="--accent:${field.color}"><span class="field-index">${field.code}</span><span><b>${field.name}</b><small>${field.examples.slice(0,2).join(' · ')}</small></span><span class="explore-arrow">↗</span></button>`).join('')}</div><p class="research-common">소재 설계는 다섯 입구에 모두 이어져요. AI로 소재를 찾는 연구와 AI를 구현하는 반도체 연구도 구분해 살펴보세요. 다른 입구에서도 같은 교수님과 새로운 연구 이야기를 만날 수 있어요.</p></section>
  <div class="event-result">${eventBlock(true)}</div><details class="result-details"><summary>결과와 연구실 연결은 어떻게 만들어졌나요?</summary><p>학년·전공을 고른 뒤, 관심 장면 → 세부 주제 → 연구 접근 → 난관에서의 다음 선택으로 이야기를 이어갑니다. 마지막에는 더 알아보고 싶은 진로를 선택합니다. 앞의 선택을 바꾸면 그 선택에 의존하는 후속 응답은 초기화됩니다.</p><p>결과는 선택한 주제와 접근을 정리합니다. 연구실 안내는 세부 주제 연결 80, 넓은 관심 맥락 20의 가중합으로 순서를 정합니다. 연결표에서 주요 연결은 1, 연계는 0.5입니다. 넓은 관심 맥락은 선택한 입구와 세부 주제의 관련 분야를 정규화한 값으로, 앞뒤 질문을 독립된 표처럼 중복 가산하지 않습니다. 이름이 등장하는 횟수나 배정된 분야 수는 점수가 되지 않습니다. 연구 방식은 대화·체험 안내에 사용하며, 학년·전공·진로 선택과 함께 연구실 순서에는 영향을 주지 않습니다. 이 값은 관심 연결을 위한 편집 기준이며 적합도나 능력의 백분율이 아닙니다.</p><p>첫 안내는 상위 6위까지이며 경계에서 동점인 연구실도 모두 포함합니다. 관련 연구실이 적으면 수를 채우려고 무관한 연구실을 넣지 않습니다. 전체 20명은 언제든 가나다순으로 볼 수 있습니다.</p>${isShared?'':`<ul class="answer-review">${QUESTIONS.map((_,i)=>{const q=getQuestion(i,answers);return `<li><span>${esc(q.title.replaceAll('\n',' '))}</span><b>${esc(q.options.find(o=>o.id===answers[q.id])?.label||'')}</b></li>`;}).join('')}</ul>`}<p>응답은 현재 참여하는 동안만 유지되며 서버로 전송하지 않습니다. 새로 열거나 새로고침하면 처음부터 시작합니다.</p><p><button class="text-button" data-action="clear">처음부터 새로 시작하기</button></p></details><div class="event-actions"><button data-action="restart">처음부터 다시 하기 ↺</button><a href="${EVENT.facultyUrl}" target="_blank" rel="noopener">전체 교수·연구실 살펴보기 ↗</a></div></div>`;
  renderFaculty('mine');
- if(!isShared)renderCurriculum(r.area.id);
+ if(!isShared){__modules['curriculum.mjs'].setCurriculumTopic(r.area.id+'/'+r.topic.id);renderCurriculum(r.area.id);}
  if(!isShared)renderNext(r.profile);
  document.getElementById('result-title').focus({preventScroll:true});
 }
